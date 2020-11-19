@@ -6,6 +6,9 @@ import sys
 import logging
 import argparse
 
+# Imports
+from library.mainlib import *
+
 
 # Saving time to calculate time needed
 startTime = time.time()
@@ -68,6 +71,8 @@ while run:
         if i.type == pygame.QUIT:
             log.info(f"Event Quit recognized")
             run = False
+    drawWorld(data, x, y, windowborder, boxSize)
+    pygame.time.delay(50)
 
 
 # End Logging
