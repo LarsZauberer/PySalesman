@@ -9,8 +9,22 @@ y = 4
 
 DIM = 700
 
-n = 10
-b = 20
-s = int(DIM/n)
+boxCount = 10
+windowborder = 20
+boxSize = int(DIM/boxCount)
 
-win = pygame.display.set_mode((DIM+2*b, DIM+2*b))
+win = pygame.display.set_mode((DIM+2*windowborder, DIM+2*windowborder))
+
+data = [[0]*boxCount for i in range(boxCount)]
+data[2][1] = 1 #Testwerte
+data[3][7] = 1
+data[8][4] = 1
+
+run = True
+
+while run:
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
+            run = False
+
+sys.exit()
