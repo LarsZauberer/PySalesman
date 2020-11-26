@@ -77,7 +77,9 @@ vel = [0, 0]
 # Main Game Loop
 log.info(f"Starting Game...")
 while run:
-    win.fill((255, 255, 255))
+    log.debug(f"Window Design...")
+    win.fill((94, 94, 94))
+    pygame.draw.rect(win, (255, 255, 255), (windowborder, windowborder, DIM, DIM))
     for i in pygame.event.get():
         # Quit Event
         if i.type == pygame.QUIT:
@@ -88,6 +90,9 @@ while run:
 
     x += vel[0]
     y += vel[1]
+
+    x, y = playerPosCheck(x, y, boxCount)
+
     drawWorld(data, x, y, windowborder, boxSize)
     pygame.display.update()
     pygame.time.delay(50)

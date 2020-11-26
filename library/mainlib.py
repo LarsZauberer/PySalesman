@@ -44,3 +44,21 @@ def playerMovement(event, vel):
     log.debug(f"Player Movement Velocity: {vel}")
 
     return vel
+
+
+def playerPosCheck(x, y, bound):
+    log.debug(f"Checking Player position")
+    if x >= bound-1:
+        x = bound-1
+        log.debug(f"Player on boundary! Setting position")
+    elif x <= 0:
+        x = 0
+        log.debug(f"Player on boundary! Setting position")
+    if y >= bound-1:
+        y = bound-1
+        log.debug(f"Player on boundary! Setting position")
+    elif y <= 0:
+        y = 0
+        log.debug(f"Player on boundary! Setting position")
+
+    return x, y
