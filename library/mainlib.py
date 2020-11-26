@@ -18,6 +18,7 @@ def drawWorld(data, x, y, bound, size):
 
 def playerMovement(event, vel):
     if event.type == pygame.KEYDOWN:
+        # Key Down for Momvement
         log.debug(f"Key Down Detected: {event.key}")
         if event.key == pygame.K_a:
             vel[0] = -1
@@ -27,9 +28,9 @@ def playerMovement(event, vel):
             vel[1] = -1
         if event.key == pygame.K_s:
             vel[1] = 1
-        if event.key == pygame.K_LSHIFT:
-            vel.vel = 10
     if event.type == pygame.KEYUP:
+        # Key Up for Movement
+        # Resets the velocity
         log.debug(f"Key Up Detected: {event.key}")
         if event.key == pygame.K_a:
             vel[0] = 0
