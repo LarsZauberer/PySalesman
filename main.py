@@ -45,7 +45,6 @@ except Exception as e:
     log.cirtical("Error while initializing pygame")
     log.critical(f"{e}")
 
-
 x = 4
 y = 4
 
@@ -74,9 +73,10 @@ log.debug(f"World calculated!")
 
 vel = [0, 0]
 
-# Main Game Loop
-log.info(f"Starting Game...")
-while run:
+# ---------------------------------
+
+def redraw():
+    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run
     log.debug(f"Window Design...")
     # Background Design
     win.fill((94, 94, 94))
@@ -103,6 +103,14 @@ while run:
     drawWorld(data, x, y, windowborder, boxSize)
     pygame.display.update()
     pygame.time.delay(50)
+
+
+# --------------------------------
+
+# Main Game Loop
+log.info(f"Starting Game...")
+while run:
+    redraw()
 
 
 # End Logging
