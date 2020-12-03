@@ -72,6 +72,10 @@ data = worldgen(data, boxCount, obstacleCount)
 log.debug(f"World calculated!")
 log.debug(f"World: {data}")
 
+while data[y][x] != 0:
+    x = rand(0, boxCount)
+    y = rand(0, boxCount)
+
 vel = [0, 0]
 
 # ---------------------------------
