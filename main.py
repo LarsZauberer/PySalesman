@@ -94,9 +94,12 @@ def redraw():
             run = False
 
         vel = playerMovement(i, vel)
+        vel = playerObstacle(x, y, vel, data)
 
     x += vel[0]
     y += vel[1]
+
+    vel = [0, 0]
 
     x, y = playerPosCheck(x, y, boxCount)
 

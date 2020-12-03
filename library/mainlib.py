@@ -28,7 +28,7 @@ def playerMovement(event, vel):
             vel[1] = -1
         if event.key == pygame.K_s:
             vel[1] = 1
-    if event.type == pygame.KEYUP:
+    """if event.type == pygame.KEYUP:
         # Key Up for Movement
         # Resets the velocity
         log.debug(f"Key Up Detected: {event.key}")
@@ -39,7 +39,7 @@ def playerMovement(event, vel):
         if event.key == pygame.K_w:
             vel[1] = 0
         if event.key == pygame.K_s:
-            vel[1] = 0
+            vel[1] = 0"""
 
     log.debug(f"Player Movement Velocity: {vel}")
 
@@ -62,3 +62,10 @@ def playerPosCheck(x, y, bound):
         log.debug(f"Player on boundary! Setting position")
 
     return x, y
+
+
+def playerObstacle(x, y, vel, data):
+    if data[x+vel[0]][y+vel[1]] == 1:
+        return [0, 0]
+    else:
+        return vel
