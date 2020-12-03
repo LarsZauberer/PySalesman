@@ -57,3 +57,16 @@ def playerObstacle(x, y, vel, data):
         return [0, 0]
     else:
         return vel
+
+
+def worldgen(data, boxCount, obstacleCount):
+    import random
+    types = [1, 2, 3, 4, 5]
+    for _ in range(obstacleCount):
+        p = random.randint(0, boxCount-1)
+        q = random.randint(0, boxCount-1)
+        while data[p][q]!=0:
+            p = random.randint(0, boxCount-1)
+            q = random.randint(0, boxCount-1)
+        data[p][q] = types[random.randint(0, len(types)-1)]
+    return data

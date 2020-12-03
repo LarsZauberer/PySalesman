@@ -57,6 +57,8 @@ boxCount = 10
 windowborder = 20
 boxSize = int(DIM/boxCount)
 
+obstacleCount = 20
+
 log.debug(f"All Variables set")
 
 # Create the Window
@@ -66,10 +68,9 @@ log.debug(f"Creating Pygame Window")
 # Create world data
 log.debug(f"Calculating World...")
 data = [[0]*boxCount for i in range(boxCount)]
-data[2][1] = 1 #Testwerte
-data[3][7] = 1
-data[8][4] = 1
+data = worldgen(data, boxCount, obstacleCount)
 log.debug(f"World calculated!")
+log.debug(f"World: {data}")
 
 vel = [0, 0]
 
