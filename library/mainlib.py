@@ -55,10 +55,13 @@ def playerPosCheck(x, y, bound):
 
 
 def playerObstacle(x, y, vel, data):
-    if data[x+vel[0]][y+vel[1]] >= 1:
+    try:
+        if data[x+vel[0]][y+vel[1]] >= 1:
+            return [0, 0]
+        else:
+            return vel
+    except Exception:
         return [0, 0]
-    else:
-        return vel
 
 
 def worldgen(data, boxCount, obstacleCount):

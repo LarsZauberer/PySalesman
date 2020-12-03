@@ -59,12 +59,16 @@ boxSize = int(DIM/boxCount)
 
 obstacleCount = 20
 
+rotation = 0
+
 imageURL = [
             "images/player1.png",
             "images/asteroid.png",
            ]
 
+log.info(f"Loading Images...")
 images = [pygame.transform.scale(pygame.image.load(i), (boxSize, boxSize)) for i in imageURL]
+log.info(f"Successfully loaded images")
 
 log.debug(f"All Variables set")
 
