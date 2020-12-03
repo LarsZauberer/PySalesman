@@ -80,6 +80,11 @@ while run:
     log.debug(f"Window Design...")
     win.fill((94, 94, 94))
     pygame.draw.rect(win, (255, 255, 255), (windowborder, windowborder, DIM, DIM))
+    for i in range(boxCount):
+        for _ in range(boxCount):
+            pygame.draw.line(win, (90, 90, 90), (i*boxSize+windowborder, windowborder), (i*boxSize+windowborder, DIM+windowborder))
+            pygame.draw.line(win, (90, 90, 90), (windowborder, i*boxSize+windowborder), (DIM+windowborder, i*boxSize+windowborder))
+
     for i in pygame.event.get():
         # Quit Event
         if i.type == pygame.QUIT:
