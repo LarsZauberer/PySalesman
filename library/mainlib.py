@@ -28,18 +28,6 @@ def playerMovement(event, vel):
             vel[1] = -1
         if event.key == pygame.K_s:
             vel[1] = 1
-    """if event.type == pygame.KEYUP:
-        # Key Up for Movement
-        # Resets the velocity
-        log.debug(f"Key Up Detected: {event.key}")
-        if event.key == pygame.K_a:
-            vel[0] = 0
-        if event.key == pygame.K_d:
-            vel[0] = 0
-        if event.key == pygame.K_w:
-            vel[1] = 0
-        if event.key == pygame.K_s:
-            vel[1] = 0"""
 
     log.debug(f"Player Movement Velocity: {vel}")
 
