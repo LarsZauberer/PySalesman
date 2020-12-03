@@ -59,6 +59,13 @@ boxSize = int(DIM/boxCount)
 
 obstacleCount = 20
 
+imageURL = [
+            "images/player1.png",
+            "images/asteroid.png",
+           ]
+
+images = [pygame.transform.scale(pygame.image.load(i), (boxSize, boxSize)) for i in imageURL]
+
 log.debug(f"All Variables set")
 
 # Create the Window
@@ -81,7 +88,7 @@ vel = [0, 0]
 # ---------------------------------
 
 def redraw():
-    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run
+    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run, images
     log.debug(f"Window Design...")
     # Background Design
     win.fill((94, 94, 94))
@@ -108,7 +115,7 @@ def redraw():
 
     x, y = playerPosCheck(x, y, boxCount)
 
-    drawWorld(data, x, y, windowborder, boxSize)
+    drawWorld(data, x, y, windowborder, boxSize, images)
     pygame.display.update()
     pygame.time.delay(50)
 
