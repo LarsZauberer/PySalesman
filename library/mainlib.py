@@ -97,8 +97,20 @@ def worldgen(data, boxCount, obstacleCount):
     for _ in range(obstacleCount):
         p = random.randint(0, boxCount-1)
         q = random.randint(0, boxCount-1)
+
         while data[p][q]!=0:
             p = random.randint(0, boxCount-1)
             q = random.randint(0, boxCount-1)
-        data[p][q] = types[random.randint(0, len(types)-1)]
+        objectType = types[random.randint(0, len(types)-1)]
+        data[p][q] = objectType
+        if objectType == 2:
+            while data[p][q]!=0:
+                p = random.randint(0, boxCount-1)
+                q = random.randint(0, boxCount-1)
+            data[p][q] = 3
+        elif objectType == 3:
+            while data[p][q]!=0:
+                p = random.randint(0, boxCount-1)
+                q = random.randint(0, boxCount-1)
+            data[p][q] = 2
     return data
