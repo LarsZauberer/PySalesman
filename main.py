@@ -67,6 +67,7 @@ imageURL = [
             "images/left.png",
             "images/up.png",
             "images/boulder.png",
+            "images/house.png"
            ]
 
 log.info(f"Loading Images...")

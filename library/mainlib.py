@@ -10,7 +10,6 @@ def drawWorld(data, x, y, bound, size, images, rot):
         for j in range(len(data)):
             if x == i and y == j:
                 log.debug(f"Draw Player at Location {x} and {y}")
-                # pygame.draw.rect(pygame.display.get_surface(), (255, 0, 0), (bound+x*size, bound+y*size, size, size))
                 if rot[0] == 1:
                     pygame.display.get_surface().blit(images[0], (bound+x*size+1, bound+y*size+1))
                 elif rot[0] == -1:
@@ -21,10 +20,12 @@ def drawWorld(data, x, y, bound, size, images, rot):
                     pygame.display.get_surface().blit(images[3], (bound+x*size+1, bound+y*size+1))
                 else:
                     pygame.display.get_surface().blit(images[0], (bound+x*size+1, bound+y*size+1))
-            elif data[i][j] >= 1:
+            elif data[i][j] == 1:
                 log.debug(f"Draw Obstacle at Location {i} and {j}")
-                # pygame.draw.rect(pygame.display.get_surface(), (96, 96, 96), (bound+i*size, bound+j*size, size, size))
                 pygame.display.get_surface().blit(images[4], (bound+i*size+1, bound+j*size+1))
+            elif data[i][j] == 2:
+                log.debug(f"Draw House at Location {i} and {j}")
+                pygame.display.get_surface().blit(images[5], (bound+i*size+1, bound+j*size+1))
 
 
 def playerMovement(event, vel):
@@ -75,7 +76,7 @@ def playerObstacle(x, y, vel, data):
 
 def worldgen(data, boxCount, obstacleCount):
     import random
-    types = [1, 2, 3, 4, 5]
+    types = [1, 2]
     for _ in range(obstacleCount):
         p = random.randint(0, boxCount-1)
         q = random.randint(0, boxCount-1)
