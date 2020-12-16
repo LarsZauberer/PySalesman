@@ -62,8 +62,11 @@ obstacleCount = 20
 rotation = 0
 
 imageURL = [
-            "images/player1.png",
-            "images/asteroid.png",
+            "images/right.png",
+            "images/down.png",
+            "images/left.png",
+            "images/up.png",
+            "images/boulder.png",
            ]
 
 log.info(f"Loading Images...")
@@ -89,10 +92,12 @@ while data[y][x] != 0:
 
 vel = [0, 0]
 
+rot = [0, 0]
+
 # ---------------------------------
 
 def redraw():
-    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run, images
+    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run, images, rot
     log.debug(f"Window Design...")
     # Background Design
     win.fill((94, 94, 94))
@@ -115,11 +120,15 @@ def redraw():
     x += vel[0]
     y += vel[1]
 
-    vel = [0, 0]
-
     x, y = playerPosCheck(x, y, boxCount)
 
-    drawWorld(data, x, y, windowborder, boxSize, images)
+    if vel != [0, 0]:
+        rot = vel
+
+    drawWorld(data, x, y, windowborder, boxSize, images, rot)
+
+    vel = [0, 0]
+
     pygame.display.update()
     pygame.time.delay(50)
 

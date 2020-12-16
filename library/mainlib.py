@@ -5,17 +5,26 @@ import logging
 # Log
 log = logging.getLogger("Main Lib")
 
-def drawWorld(data, x, y, bound, size, images):
+def drawWorld(data, x, y, bound, size, images, rot):
     for i in range(len(data)):
         for j in range(len(data)):
             if x == i and y == j:
                 log.debug(f"Draw Player at Location {x} and {y}")
                 # pygame.draw.rect(pygame.display.get_surface(), (255, 0, 0), (bound+x*size, bound+y*size, size, size))
-                pygame.display.get_surface().blit(images[0], (bound+x*size, bound+y*size))
+                if rot[0] == 1:
+                    pygame.display.get_surface().blit(images[0], (bound+x*size, bound+y*size))
+                elif rot[0] == -1:
+                    pygame.display.get_surface().blit(images[2], (bound+x*size, bound+y*size))
+                elif rot[1] == 1:
+                    pygame.display.get_surface().blit(images[1], (bound+x*size, bound+y*size))
+                elif rot[1] == -1:
+                    pygame.display.get_surface().blit(images[3], (bound+x*size, bound+y*size))
+                else:
+                    pygame.display.get_surface().blit(images[0], (bound+x*size, bound+y*size))
             elif data[i][j] >= 1:
                 log.debug(f"Draw Obstacle at Location {i} and {j}")
                 # pygame.draw.rect(pygame.display.get_surface(), (96, 96, 96), (bound+i*size, bound+j*size, size, size))
-                pygame.display.get_surface().blit(images[1], (bound+i*size, bound+j*size))
+                pygame.display.get_surface().blit(images[4], (bound+i*size, bound+j*size))
 
 
 def playerMovement(event, vel):
