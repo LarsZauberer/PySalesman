@@ -67,7 +67,9 @@ imageURL = [
             "images/left.png",
             "images/up.png",
             "images/boulder.png",
-            "images/house.png"
+            "images/house.png",
+            "images/box.png",
+            "images/flag.png",
            ]
 
 log.info(f"Loading Images...")
@@ -95,10 +97,12 @@ vel = [0, 0]
 
 rot = [0, 0]
 
+boxes = 0
+
 # ---------------------------------
 
 def redraw():
-    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run, images, rot
+    global x, y, data, vel, DIM, boxCount, windowborder, boxSize, run, images, rot, boxes, run
     log.debug(f"Window Design...")
     # Background Design
     win.fill((94, 94, 94))
@@ -116,7 +120,12 @@ def redraw():
             run = False
 
         vel = playerMovement(i, vel)
-        vel = playerObstacle(x, y, vel, data)
+
+    vel = playerObstacle(x, y, vel, data, boxes)
+    if type(vel) == tuple:
+        boxes = vel[1]
+        vel = vel[0]
+    print(boxes)
 
     x += vel[0]
     y += vel[1]
@@ -129,6 +138,15 @@ def redraw():
     drawWorld(data, x, y, windowborder, boxSize, images, rot)
 
     vel = [0, 0]
+
+    homeCount = 0
+    for i in data:
+        for e in i:
+            if e == 2:
+                homeCount += 1
+    if homeCount == 0:
+        run = False
+
 
     pygame.display.update()
     pygame.time.delay(50)

@@ -26,6 +26,12 @@ def drawWorld(data, x, y, bound, size, images, rot):
             elif data[i][j] == 2:
                 log.debug(f"Draw House at Location {i} and {j}")
                 pygame.display.get_surface().blit(images[5], (bound+i*size+1, bound+j*size+1))
+            elif data[i][j] == 3:
+                log.debug(f"Draw Box at Location {i} and {j}")
+                pygame.display.get_surface().blit(images[6], (bound+i*size+1, bound+j*size+1))
+            elif data[i][j] == 4:
+                log.debug(f"Draw Flag at Location {i} and {j}")
+                pygame.display.get_surface().blit(images[7], (bound+i*size+1, bound+j*size+1))
 
 
 def playerMovement(event, vel):
@@ -64,9 +70,20 @@ def playerPosCheck(x, y, bound):
     return x, y
 
 
-def playerObstacle(x, y, vel, data):
+def playerObstacle(x, y, vel, data, boxes):
     try:
-        if data[x+vel[0]][y+vel[1]] >= 1:
+        if data[x+vel[0]][y+vel[1]] == 3:
+            data[x+vel[0]][y+vel[1]] = 0
+            boxes += 1
+            log.debug(f"Boxes Collected: {boxes}")
+            return vel, boxes
+        elif data[x+vel[0]][y+vel[1]] == 2 and boxes >= 1:
+            data[x+vel[0]][y+vel[1]] = 4
+            boxes -= 1
+            log.debug(f"Boxes Collected: {boxes}")
+            log.debug(f"Goal!")
+            return [0, 0], boxes
+        elif data[x+vel[0]][y+vel[1]] >= 1:
             return [0, 0]
         else:
             return vel
@@ -76,7 +93,7 @@ def playerObstacle(x, y, vel, data):
 
 def worldgen(data, boxCount, obstacleCount):
     import random
-    types = [1, 2]
+    types = [1, 2, 3,]
     for _ in range(obstacleCount):
         p = random.randint(0, boxCount-1)
         q = random.randint(0, boxCount-1)
