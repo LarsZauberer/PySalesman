@@ -70,7 +70,7 @@ imageURL = [
            ]
 
 log.info(f"Loading Images...")
-images = [pygame.transform.scale(pygame.image.load(i), (boxSize, boxSize)) for i in imageURL]
+images = [pygame.transform.scale(pygame.image.load(i), (boxSize-1, boxSize-1)) for i in imageURL]
 log.info(f"Successfully loaded images")
 
 log.debug(f"All Variables set")
