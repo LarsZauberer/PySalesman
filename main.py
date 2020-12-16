@@ -87,8 +87,8 @@ log.debug(f"World calculated!")
 log.debug(f"World: {data}")
 
 while data[y][x] != 0:
-    x = rand(0, boxCount)
-    y = rand(0, boxCount)
+    x = rand(0, boxCount-1)
+    y = rand(0, boxCount-1)
 
 vel = [0, 0]
 
