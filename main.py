@@ -125,7 +125,6 @@ def redraw():
     if type(vel) == tuple:
         boxes = vel[1]
         vel = vel[0]
-    print(boxes)
 
     x += vel[0]
     y += vel[1]
@@ -158,6 +157,9 @@ def redraw():
 log.info(f"Starting Game...")
 while run:
     redraw()
+
+# Score
+print(int(100*1.1**(-(time.time() - startTime - 1))))
 
 
 # End Logging
